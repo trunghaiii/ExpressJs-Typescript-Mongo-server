@@ -1,12 +1,16 @@
+require('dotenv').config()
 import express, { Application, Request, Response } from 'express';
+import bodyParser from 'body-parser';
 
 import userRoute from "./routes/user"
 import mongooseConnection from "./config/mongoose"
 
-require('dotenv').config()
 const app: Application = express();
-
 const PORT: any = process.env.PORT || 6969;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 
 app.use('/', userRoute);
 
